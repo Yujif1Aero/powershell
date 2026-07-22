@@ -36,7 +36,6 @@ We use `scoop` to manage and install required tools.
 Install the following tools via `scoop`:
 
 - `sudo`: Easily elevate privileges in PowerShell.
-- `emacs`: A powerful text editor.
 - `vim`: Lightweight and feature-rich text editor.
 - `wget`: Command-line file downloader.
 - `curl`: Data transfer tool.
@@ -44,9 +43,25 @@ Install the following tools via `scoop`:
 
 **Installation Command**:
 ```powershell
-scoop install sudo emacs vim wget curl git
+scoop install sudo vim wget curl git
+```
+**Emacs Installation**
+
+Download [emacs with native compiler](https://ftp.gnu.org/gnu/emacs/windows/emacs-30/emacs-30.2-installer.exe) and run:
+
+```powershell
+emacsBin = "C:\Program Files\Emacs\emacs-30.2\bin"
+userPath = [Environment]::GetEnvironmentVariable('Path','User')
+if ($userPath -notlike "*$emacsBin*") {
+    [Environment]::SetEnvironmentVariable('Path', "$emacsBin;$userPath", 'User')
+}
 ```
 
+If you installed through `scoop`, uninstall it:
+
+```
+scoop uninstall emacs
+```
 ---
 
 ## 3. Configuring Additional Tools
